@@ -1,4 +1,5 @@
 from random import choice
+from sys import exit
 
 class RockPaperScissors(): 
     def __init__(self): 
@@ -13,10 +14,10 @@ class RockPaperScissors():
         if (choice1 == 'Rock' and choice2 == 'Scissors') or \
             (choice1 == 'Paper' and choice2 == 'Rock') or \
                 (choice1 == 'Scissors' and choice2 == 'Paper'):
-            print('\nYOU WIN\n')
+            print(f'{choice1} beats {choice2}. You win this round!')
             self.opponentHp -= 1
         else:
-            print('\nYOU LOSE\n')
+            print(f'{choice2} beats {choice1}. You lose this round!')
             self.playerHp -= 1
 
     def playGame(self): 
@@ -34,19 +35,20 @@ class RockPaperScissors():
                 print('\nYour choice was invalid, please choose another stance!\n')
                 continue
 
-            if self.opponentHp == 0:
-                print('\nWINNER WINNER CHICKEN DINNER')
-                break
-            elif self.playerHp == 0: 
-                print('\nYOU LOSE!')
-                break
-
             opponentsChoice = self.opponentsChoice()
 
             if stance == opponentsChoice: 
-                print('\nWE HAVE A TIE\n')
+                print(f'Both chose {stance}. It\'s a tie!')
             else: 
                 self.evaluate_winner(stance, opponentsChoice)
+            
+        if self.opponentHp == 0:
+            print('\nWINNER WINNER CHICKEN DINNER')
+        else: 
+            # self.playerHp == 0:
+            print('\nYOU LOSE!')
+
+        # exit()
 
 if __name__ == '__main__':
     initializeGame = RockPaperScissors()
